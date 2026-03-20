@@ -33,5 +33,14 @@
       "X-Qualifire-API-Key": "{{environment_variables.QUALIFIRE_API_KEY}}"
     },
     "environment_variables": ["QUALIFIRE_API_KEY", "QUALIFIRE_WEBHOOK_URL"]
+  },
+  "ramp": {
+    "event_types": ["llm_api_success"],
+    "endpoint": "https://webhook.site/d789fafe-f4f6-4faa-b01a-15dc0dade5fc",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer {{environment_variables.RAMP_API_KEY}}"
+    },
+    "environment_variables": ["RAMP_API_KEY"]
   }
 }
