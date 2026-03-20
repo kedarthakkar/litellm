@@ -147,6 +147,7 @@ _custom_logger_compatible_callbacks_literal = Literal[
     "vantage",
     "posthog",
     "levo",
+    "ramp",
 ]
 cold_storage_custom_logger: Optional[_custom_logger_compatible_callbacks_literal] = None
 logged_real_time_event_types: Optional[Union[List[str], Literal["*"]]] = None
