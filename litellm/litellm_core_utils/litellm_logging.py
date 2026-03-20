@@ -3663,6 +3663,15 @@ def _init_custom_logger_compatible_class(  # noqa: PLR0915
             _posthog_logger = PostHogLogger()
             _in_memory_loggers.append(_posthog_logger)
             return _posthog_logger  # type: ignore
+        elif logging_integration == "ramp":
+            from litellm.integrations.ramp.ramp import RampLogger
+
+            for callback in _in_memory_loggers:
+                if isinstance(callback, RampLogger):
+                    return callback
+            _ramp_logger = RampLogger()
+            _in_memory_loggers.append(_ramp_logger)
+            return _ramp_logger
         elif logging_integration == "braintrust":
             from litellm.integrations.braintrust_logging import BraintrustLogger
 
@@ -4474,6 +4483,12 @@ def get_custom_logger_compatible_class(  # noqa: PLR0915
         elif logging_integration == "gcs_pubsub":
             for callback in _in_memory_loggers:
                 if isinstance(callback, GcsPubSubLogger):
+                    return callback
+        elif logging_integration == "ramp":
+            from litellm.integrations.ramp.ramp import RampLogger
+
+            for callback in _in_memory_loggers:
+                if isinstance(callback, RampLogger):
                     return callback
         elif logging_integration == "generic_api":
             for callback in _in_memory_loggers:
